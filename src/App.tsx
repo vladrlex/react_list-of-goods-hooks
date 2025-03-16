@@ -18,12 +18,15 @@ export const goodsFromServer: string[] = [
 enum SortProperties {
   LENGTH = 'length',
   ALPHABETICAL = 'alphabetical',
+  DEFAULT = '',
 }
 
 export const App: React.FC = () => {
   const [goods, setGoods] = useState<string[]>(goodsFromServer);
   const [isReversed, setIsReversed] = useState<boolean>(false);
-  const [activeSort, setActiveSort] = useState<string>('');
+  const [activeSort, setActiveSort] = useState<SortProperties>(
+    SortProperties.DEFAULT,
+  );
 
   const sortByAlphabet = () => {
     setGoods(prevGoods => {
