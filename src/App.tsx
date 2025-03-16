@@ -38,12 +38,11 @@ export const App: React.FC = () => {
   };
 
   const sortByLength = () => {
-    setGoods(prevGoods => {
-      const sorted = [...prevGoods].sort((a, b) => a.length - b.length);
+    const sortedGoods = [...goodsFromServer].sort(
+      (a, b) => a.length - b.length,
+    );
 
-      return isReversed ? sorted.reverse() : sorted;
-    });
-
+    setGoods(isReversed ? [...sortedGoods].reverse() : sortedGoods);
     setActiveSort(SortProperties.LENGTH);
   };
 
@@ -55,7 +54,7 @@ export const App: React.FC = () => {
   const reset = () => {
     setGoods(goodsFromServer);
     setIsReversed(false);
-    setActiveSort('');
+    setActiveSort(SortProperties.DEFAULT);
   };
 
   return (
