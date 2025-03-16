@@ -38,11 +38,12 @@ export const App: React.FC = () => {
   };
 
   const sortByLength = () => {
-    const sortedGoods = [...goodsFromServer].sort(
-      (a, b) => a.length - b.length,
-    );
+    setGoods(prevGoods => {
+      const sorted = [...prevGoods].sort((a, b) => a.length - b.length);
 
-    setGoods(isReversed ? [...sortedGoods].reverse() : sortedGoods);
+      return isReversed ? sorted.reverse() : sorted;
+    });
+
     setActiveSort(SortProperties.LENGTH);
   };
 
